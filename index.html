@@ -5,94 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>School System</title>
 <style>
-    /* Some basic CSS for styling */
     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #000; /* Black */
-        color: #fff; /* Text color */
-    }
+   
     .container {
         max-width: 800px;
         margin: 20px auto;
-        padding: 20px;
+        padding: 40px;
         border-radius: 10px;
-        background-color: #333; /* Dark grey */
+        background-color: #C5EBAA; /* Dark Grey */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     h1 {
         text-align: center;
+        color: #fff; /* White */
+        margin-bottom: 30px;
     }
     form {
         margin-top: 20px;
     }
     input[type="text"], input[type="number"], input[type="password"] {
         width: 100%;
-        padding: 8px;
-        margin: 5px 0;
-        border: 1px solid #ccc;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #555; /* Darker Grey */
         border-radius: 5px;
         box-sizing: border-box;
+        background-color: #444; /* Dark Grey */
+        color: #fff; /* White */
     }
     button {
-        color: white;
-        padding: 10px 20px;
+        color: #9B4444; /* White */
+        padding: 12px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin: 5px;
+        margin: 10px 0;
         transition: background-color 0.3s ease;
-        width: 100%;
+        width: 48%; /* Reduce button width */
     }
-    button.home-btn {
-        background-color: #4CAF50; /* Dark green */
-    }
-    button.home-btn:hover {
-        background-color: #45a049; /* Darker green */
-    }
-    button.add-money-btn {
-        background-color: #2196F3; /* Blue */
-    }
-    button.add-money-btn:hover {
-        background-color: #0b7dda; /* Darker Blue */
-    }
-    button.monitoring-btn {
-        background-color: #f44336; /* Red */
-    }
-    button.monitoring-btn:hover {
-        background-color: #da190b; /* Darker Red */
-    }
-    button.balance-btn {
-        background-color: #9c27b0; /* Purple */
-    }
-    button.balance-btn:hover {
-        background-color: #7b1fa2; /* Darker Purple */
-    }
-    button.logout-btn {
-        background-color: #555; /* Black */
-    }
-    button.logout-btn:hover {
-        background-color: #333; /* Darker Black */
+    button:hover {
+        opacity: 1;
     }
     .hidden {
         display: none;
+    }
+
+    /* Style for the form-group to adjust input and button width and centering */
+    .form-group {
+        width: 50%; /* Reduce width to half */
+        margin: 0 auto; /* Center horizontally */
+        display: flex;
+        flex-direction: column; /* Align children vertically */
     }
     .transaction-item {
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 5px;
-        overflow: hidden;
+        background-color: #333333; /* Consistent with input background for harmony */
+        color: #ffffff; /* Maintained white text for readability */
     }
     .add-money {
-        background-color: #45a049; /* Dark green */
+        background-color: #4caf50; /* Vibrant green for positive actions like adding money */
     }
     .purchase {
-        background-color: #da190b; /* Dark red */
+        background-color: #f44336; /* Bright red for purchases for a clear distinction */
     }
     .balance {
         padding: 10px;
         border-radius: 5px;
+        background-color: #3f51b5; /* Deep purple for balance section for visibility */
+        color: #ffffff; /* White text for readability */
         margin-bottom: 20px;
     }
     .balance span {
@@ -102,21 +87,79 @@
         margin-top: 20px;
         text-align: center;
     }
-    .add-money-options {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
     .add-money-options button {
         margin: 0 10px;
     }
     .student-info {
         text-align: right;
         margin-bottom: 20px;
+        color: #00bcd4; /* Cyan for student info for consistency with headings */
     }
     .student-info span {
         margin-left: 10px;
-        display: block; /* Display each in a new line */
+        display: block; /* Ensuring each piece of info is on its own line */
+    }
+    .analyse-container {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #37474f; /* Darker grey for analysis sections, improving contrast */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .analyse-section {
+        display: flex;
+        justify-content: space-between;
+    }
+    .analyse-section h2, .analyse-section h3 {
+        color: #ffffff; /* White text for headings within analysis for better readability */
+    }
+    .analyse-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #333333; /* Matching the transaction items for consistency */
+        color: #ffffff; /* White text for readability */
+    }
+    .analyse-item span {
+        font-weight: bold;
+    }
+@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes scaleUp {
+        from { transform: scale(0.98); }
+        to { transform: scale(1); }
+    }
+
+    /* Applying fadeIn to body and container for a gentle load effect */
+    body, .container {
+        animation: fadeIn 1s ease-out;
+    }
+
+    button:hover, input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus {
+        animation: scaleUp 0.3s ease forwards;
+    }
+
+    /* Additional styles for hover and focus states */
+    button:hover {
+        opacity: 0.9;
+    }
+
+    input:focus {
+        border-color: #555; /* Darker Grey */
+        background-color: #555; /* Slightly lighter to indicate focus */
+    }
+
+    /* Add this CSS for button alignment */
+    .button-group {
+        display: flex;
+        justify-content: space-between; /* Spread buttons evenly */
+        margin-top: 10px; /* Adjust margin */
+    }
+
+    .center-aligned {
+        justify-content: center; /* Center align buttons in this group */
     }
 </style>
 </head>
@@ -124,9 +167,11 @@
 <div class="container" id="loginContainer">
     <h1>Parent Login</h1>
     <form id="loginForm">
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button class="home-btn" type="button" onclick="login()">Login</button>
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="button" onclick="login()">Login</button>
+        </div>
     </form>
 </div>
 
@@ -135,17 +180,55 @@
         <span>CodeDash</span>
         <span>12-CS-2025</span>
     </div>
-    <button class="monitoring-btn" onclick="showMonitoring()">Monitoring</button>
-    <button class="balance-btn" onclick="showBalance()">Check Balance</button>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-    <div class="add-money-section" id="addMoneySection">
-        <h2 style="text-align: center; margin-bottom: 10px;">Add Money</h2> <!-- Header for Add Money section -->
-        <div class="add-money-options">
-            <button class="add-money-btn" onclick="showAddMoneyPage('upi')">UPI</button>
-            <button class="add-money-btn" onclick="showAddMoneyPage('creditCard')">Credit Card</button>
-            <button class="add-money-btn" onclick="showAddMoneyPage('debitCard')">Debit Card</button>
-            <button class="add-money-btn" onclick="showAddMoneyPage('bankTransfer')">Bank Transfer</button>
+    <div class="analyse-container">
+        <h2>Weekly and Monthly Expenditure</h2>
+        <div class="analyse-section">
+            <h3>Weekly Expenditure</h3>
+            <div class="analyse-item">
+                <span>School Fee: $10000</span>
+            </div>
+            <div class="analyse-item">
+                <span>Canteen: $405</span>
+            </div>
+            <div class="analyse-item">
+                <span>Xerox: $35</span>
+            </div>
+            <div class="analyse-item">
+                <span>Cafeteria: $132</span>
+            </div>
+            <div class="analyse-item">
+                Total: $10572
+            </div>
         </div>
+        <div class="analyse-section">
+            <h3>Monthly Expenditure</h3>
+            <div class="analyse-item">
+                <span>School Fee: $10000</span>
+            </div>
+            <div class="analyse-item">
+                <span>Canteen: $1902</span>
+            </div>
+            <div class="analyse-item">
+                <span>Xerox: $104</span>
+            </div>
+            <div class="analyse-item">
+                <span>Cafeteria: $512</span>
+            </div>
+            <div class="analyse-item">
+                Total: $11618
+            </div>
+        </div>
+    </div>
+    <div class="button-group">
+        <button onclick="showAddMoneyPage()">Add Money</button>
+        <button onclick="showTransactions()">Transactions</button>
+    </div>
+    <div class="button-group">
+        <button onclick="checkBalance()">Check Balance</button>
+        <button onclick="showLimitPage()">Set Limits</button>
+    </div>
+    <div class="button-group center-aligned">
+        <button onclick="logout()">Logout</button>
     </div>
 </div>
 
@@ -155,136 +238,185 @@
         <input type="number" id="moneyAmount" placeholder="Enter Amount" required>
         <input type="text" id="paymentMethod" placeholder="Payment Method" readonly required>
         <input type="text" id="upiId" placeholder="Enter UPI ID" value="12345@paytm" readonly required>
-        <button class="home-btn" type="submit">Submit</button>
+        <button type="submit">Submit</button>
     </form>
     <div class="back-to-money">
-        <button class="home-btn" onclick="backToParentPortal()">Back to Home</button>
+        <button onclick="backToParentPortal()">Back to Home</button>
     </div>
 </div>
 
-<div class="container hidden" id="monitoring" style="background-color: #f2f2f2;"> <!-- Light grey -->
-    <h1>Monitoring</h1>
-    <ul id="transactionHistory"></ul>
-    <div class="balance" id="balanceSection" style="background-color: #34495e;">Child's Current Balance: <span id="currentBalance"></span></div>
+<div class="container hidden" id="limitPage">
+    <h1>Set Limits</h1>
+    <form id="limitForm" onsubmit="submitLimits(event)">
+        <div>
+            <label for="canteen">Canteen:</label>
+            <input type="number" id="canteen" name="canteen" min="0" required>
+        </div>
+        <div>
+            <label for="xerox">Xerox:</label>
+            <input type="number" id="xerox" name="xerox" min="0" required>
+        </div>
+        <div>
+            <label for="cafeteria">Cafeteria:</label>
+            <input type="number" id="cafeteria" name="cafeteria" min="0" required>
+        </div>
+        <div>
+            <label for="stationary">Stationary:</label>
+            <input type="number" id="stationary" name="stationary" min="0" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
     <div class="back-to-money">
-        <button class="home-btn" onclick="backToParentPortal()">Back to Home</button>
+        <button onclick="backToParentPortal()">Back to Home</button>
+    </div>
+</div>
+
+<div class="container hidden" id="analysisPage">
+    <h1>Analysis</h1>
+    <div class="analyse-container">
+        <h2>Weekly and Monthly Expenditure</h2>
+        <div class="analyse-section">
+            <h3>Weekly Expenditure</h3>
+            <div class="analyse-item">
+                <span>School Fee: $10000</span>
+            </div>
+            <div class="analyse-item">
+                <span>Canteen: $405</span>
+            </div>
+            <div class="analyse-item">
+                <span>Xerox: $35</span>
+            </div>
+            <div class="analyse-item">
+                <span>Cafeteria: $132</span>
+            </div>
+            <div class="analyse-item">
+                Total: $10572
+            </div>
+        </div>
+        <div class="analyse-section">
+            <h3>Monthly Expenditure</h3>
+            <div class="analyse-item">
+                <span>School Fee: $10000</span>
+            </div>
+            <div class="analyse-item">
+                <span>Canteen: $1902</span>
+            </div>
+            <div class="analyse-item">
+                <span>Xerox: $104</span>
+            </div>
+            <div class="analyse-item">
+                <span>Cafeteria: $512</span>
+            </div>
+            <div class="analyse-item">
+                Total: $11618
+            </div>
+        </div>
+    </div>
+    <div class="back-to-money">
+        <button onclick="backToParentPortal()">Back to Home</button>
+    </div>
+</div>
+
+<div class="container hidden" id="monitoring">
+    <h1>Transactions</h1>
+    <ul id="transactionHistory">
+        <li class="transaction-item add-money">Transaction 1: Add Money - $1000</li>
+        <li class="transaction-item purchase">Transaction 2: Purchase - $90 (Canteen)</li>
+        <li class="transaction-item add-money">Transaction 3: Add Money - $30</li>
+        <li class="transaction-item purchase">Transaction 4: Purchase - $50 (Cafeteria)</li>
+        <li class="transaction-item add-money">Transaction 5: Add Money - $10</li>
+        <li class="transaction-item purchase">Transaction 6: Purchase - $5 (Canteen)</li>
+        <li class="transaction-item add-money">Transaction 7: Add Money - $25</li>
+        <li class="transaction-item purchase">Transaction 8: Purchase - $20 (Xerox)</li>
+        <li class="transaction-item add-money">Transaction 9: Add Money - $40</li>
+        <li class="transaction-item purchase">Transaction 10: Purchase - $120 (Canteen)</li>
+        <li class="transaction-item add-money">Transaction 11: Add Money - $15</li>
+        <li class="transaction-item purchase">Transaction 12: Purchase - $30 (Cafeteria)</li>
+    
+        <li class="transaction-item purchase">Transaction 18: Purchase - $45 (Canteen)</li>
+        <li class="transaction-item add-money">Transaction 19: Add Money - $20</li>
+        <li class="transaction-item purchase">Transaction 20: Purchase - $50 (Cafeteria)</li>
+    </ul>
+    <div class="balance">
+        Child's Current Balance: <span>$2543</span>
+    </div>
+    <div class="back-to-money">
+        <button onclick="backToParentPortal()">Back to Home</button>
     </div>
 </div>
 
 <script>
+    // JavaScript functions for handling button clicks and form submissions
+    // These functions are placeholders and may need further implementation
+
     let currentUser = null;
-    let transactions = [
-        { type: "Add Money", amount: 1000 },
-        { type: "Purchase", amount: -90, shop: "Canteen" },
-        { type: "Add Money", amount: 30 },
-        { type: "Purchase", amount: -50, shop: "Cafeteria" },
-        { type: "Add Money", amount: 10 },
-        { type: "Purchase", amount: -5, shop: "Canteen" },
-        { type: "Add Money", amount: 25 },
-        { type: "Purchase", amount: -20, shop: "Xerox" },
-        { type: "Add Money", amount: 40 },
-        { type: "Purchase", amount: -120, shop: "Canteen" },
-        { type: "Add Money", amount: 15 },
-        { type: "Purchase", amount: -30, shop: "Cafeteria" },
-        { type: "Add Money", amount: 50 },
-        { type: "Purchase", amount: -35, shop: "Xerox" },
-        { type: "Add Money", amount: 10 },
-        { type: "Purchase", amount: -40, shop: "Cafeteria" },
-        { type: "Add Money", amount: 30 },
-        { type: "Purchase", amount: -45, shop: "Canteen" },
-        { type: "Add Money", amount: 20 },
-        { type: "Purchase", amount: -50, shop: "Cafeteria" }
-    ];
 
     function login() {
-        // Perform authentication here (not implemented in this example)
-        // For simplicity, let's just assume successful login with any credentials
-        currentUser = { username: document.getElementById('username').value };
+        // Placeholder function for login
+        // You can implement authentication logic here
+        console.log("Logged in successfully");
         showParentPortal();
     }
 
     function logout() {
-        currentUser = null;
+        // Placeholder function for logout
+        console.log("Logged out successfully");
+        hideAllContainers();
         document.getElementById('loginContainer').classList.remove('hidden');
-        document.getElementById('parentPortal').classList.add('hidden');
-        document.getElementById('monitoring').classList.add('hidden');
     }
 
     function showParentPortal() {
-        document.getElementById('loginContainer').classList.add('hidden');
+        hideAllContainers();
         document.getElementById('parentPortal').classList.remove('hidden');
     }
 
-    function showMonitoring() {
-        document.getElementById('parentPortal').classList.add('hidden');
-        document.getElementById('monitoring').classList.remove('hidden');
-        updateMonitoring();
+    function showAddMoneyPage() {
+        hideAllContainers();
+        document.getElementById('addMoneyPage').classList.remove('hidden');
     }
 
-    function showAddMoneyPage(paymentMethod) {
-        document.getElementById('parentPortal').classList.add('hidden');
-        document.getElementById('addMoneyPage').classList.remove('hidden');
-        document.getElementById('paymentMethod').value = paymentMethod;
+    function showLimitPage() {
+        hideAllContainers();
+        document.getElementById('limitPage').classList.remove('hidden');
+    }
+
+    function showTransactions() {
+        hideAllContainers();
+        document.getElementById('monitoring').classList.remove('hidden');
+    }
+
+    function hideAllContainers() {
+        let containers = document.getElementsByClassName('container');
+        for (let container of containers) {
+            container.classList.add('hidden');
+        }
     }
 
     function backToParentPortal() {
-        document.getElementById('monitoring').classList.add('hidden');
-        document.getElementById('addMoneyPage').classList.add('hidden');
+        hideAllContainers();
         document.getElementById('parentPortal').classList.remove('hidden');
     }
 
     function submitAddMoney(event) {
         event.preventDefault();
-        let amount = parseFloat(document.getElementById('moneyAmount').value);
-        if (!isNaN(amount) && amount > 0) {
-            addMoney(amount);
-            alert(`Successfully added $${amount} to child's account.`);
-            backToParentPortal();
-            updateMonitoring();
-        } else {
-            alert("Please enter a valid positive amount.");
-        }
+        // Placeholder function for submitting add money form
+        console.log("Add money form submitted");
+        alert("Transaction successful!"); // Show success message
+        backToParentPortal();
     }
 
-    function addMoney(amount) {
-        transactions.push({ type: "Add Money", amount: amount });
+    function submitLimits(event) {
+        event.preventDefault();
+        // Placeholder function for submitting limits form
+        console.log("Limits form submitted");
+        alert("Limits set successfully!"); // Show success message
+        backToParentPortal();
     }
 
     function checkBalance() {
-        let balance = transactions.reduce((acc, cur) => acc + cur.amount, 0);
-        alert(`Child's current balance: $${balance}`);
-    }
-
-    function showBalance() {
-        let balance = transactions.reduce((acc, cur) => acc + cur.amount, 0);
-        alert(`Child's current balance: $${balance}`);
-    }
-
-    function updateMonitoring() {
-        let transactionHistory = document.getElementById('transactionHistory');
-        let currentBalance = document.getElementById('currentBalance');
-
-        // Clear previous data
-        transactionHistory.innerHTML = "";
-        currentBalance.innerHTML = "";
-
-        // Populate transaction history
-        transactions.forEach((transaction, index) => {
-            let li = document.createElement('li');
-            if (transaction.type === "Add Money") {
-                li.textContent = `Transaction ${index + 1}: Amount Added - $${transaction.amount}`;
-                li.classList.add('add-money');
-            } else {
-                li.textContent = `Transaction ${index + 1}: Shop: ${transaction.shop}, Amount Spent - $${Math.abs(transaction.amount)}`;
-                li.classList.add('purchase');
-            }
-            li.classList.add('transaction-item');
-            transactionHistory.appendChild(li);
-        });
-
-        // Calculate current balance (assuming starting balance is 0 for simplicity)
-        let balance = transactions.reduce((acc, cur) => acc + cur.amount, 0);
-        currentBalance.textContent = `$${balance}`;
+        // Placeholder function for checking balance
+        // You can implement logic to calculate balance here
+        alert("Child's current balance: $2543"); // Demo balance
     }
 </script>
 </body>
